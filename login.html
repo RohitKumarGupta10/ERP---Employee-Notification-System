@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css" />
+    <script>
+      function login(event) {
+        event.preventDefault();
+        console.log("Login function triggered"); // Debugging log to check if function is firing
+
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        // Array of student emails and their names, with a password of 1234
+        const students = {
+          "rohit@gmail.com": { name: "Rohit", password: "1234" },
+          "prateek@gmail.com": { name: "Prateek", password: "1234" },
+          "lokesh@gmail.com": { name: "Lokesh", password: "1234" },
+          "giriraj@gmail.com": { name: "Giriraj", password: "1234" },
+          "habibur@gmail.com": { name: "Habibur", password: "1234" },
+          "harsh@gmail.com": { name: "Harsh", password: "1234" },
+          "aditya@gmail.com": { name: "Aditya", password: "1234" },
+          "manoj@gmail.com": { name: "Manoj", password: "1234" },
+          "rahul@gmail.com": { name: "Rahul", password: "1234" },
+          "sagar@gmail.com": { name: "Sagar", password: "1234" },
+          "kiran@gmail.com": { name: "Kiran", password: "1234" },
+          "ankit@gmail.com": { name: "Ankit", password: "1234" },
+          "rajesh@gmail.com": { name: "Rajesh", password: "1234" },
+          "ankush@gmail.com": { name: "Ankush", password: "1234" },
+          "sumit@gmail.com": { name: "Sumit", password: "1234" },
+        };
+
+        // Array of faculty emails and their names, with a password of 1234
+        const faculty = {
+          "anant@gmail.com": { name: "Anant", password: "1234" },
+          "amol@gmail.com": { name: "Amol", password: "1234" },
+          "vishal@gmail.com": { name: "Vishal", password: "1234" },
+          "yogesh@gmail.com": { name: "Yogesh", password: "1234" },
+          "abhay@gmail.com": { name: "Abhay", password: "1234" },
+          "bharat@gmail.com": { name: "Bharat", password: "1234" },
+          "pradeep@gmail.com": { name: "Pradeep", password: "1234" },
+          "ravi@gmail.com": { name: "Ravi", password: "1234" },
+          "nilesh@gmail.com": { name: "Nilesh", password: "1234" },
+          "shailesh@gmail.com": { name: "Shailesh", password: "1234" },
+          "vikas@gmail.com": { name: "Vikas", password: "1234" },
+          "atul@gmail.com": { name: "Atul", password: "1234" },
+          "suresh@gmail.com": { name: "Suresh", password: "1234" },
+          "kumar@gmail.com": { name: "Kumar", password: "1234" },
+        };
+
+        // Admins array (with a password of 1234)
+        const admins = {
+          "admin1@gmail.com": { name: "admin1", password: "1234" },
+          "admin2@gmail.com": { name: "admin2", password: "1234" },
+          "admin3@gmail.com": { name: "admin3", password: "1234" },
+        };
+
+        // Vice Chancellor array
+        const viceChancellors = {
+          "rakesh@gmail.com": { name: "Dr. Rakesh Kumar Jain", password: "1234" },
+          "sachin@gmail.com": { name: "Dr. Sachin Rajas", password: "1234" },
+        };
+
+        // Deans array
+        const deans = {
+          "sunil@gmail.com": { name: "Dr. Sunil", password: "1234" },
+          "vishal@gmail.com": { name: "Dr. Vishal", password: "1234" },
+        };
+
+        // Technicians array
+        const technicians = {
+          "rajesh@gmail.com": { name: "Rajesh", password: "1234" },
+          "amit@gmail.com": { name: "Amit", password: "1234" },
+          "suresh@gmail.com": { name: "Suresh", password: "1234" },
+        };
+
+        // Librarians array
+        const librarians = {
+          "rani@adypu.edu.in": { name: "Dr. Rani", password: "1234" },
+          "singh@adypu.edu.in": { name: "Mr. Singh", password: "1234" },
+          "mehta@adypu.edu.in": { name: "Ms. Mehta", password: "1234" },
+        };
+
+        // Debugging: Log the entered email and password
+        console.log(`Entered Email: ${email}, Entered Password: ${password}`);
+
+        // Check if the user is a student
+        if (students[email]) {
+          if (students[email].password === password) {
+            console.log("Student login successful");
+            // Store the student's name in localStorage
+            localStorage.setItem("student_name", students[email].name);
+            localStorage.setItem("user", JSON.stringify({ role: "student", email: email }));
+            // Redirect to student dashboard
+            window.location.href = "student.html";
+          } else {
+            alert("Incorrect password! Please try again.");
+          }
+        }
+        // Check if the user is a faculty member
+        else if (faculty[email]) {
+          if (faculty[email].password === password) {
+            console.log("Faculty login successful");
+            // Store the faculty's name in localStorage
+            localStorage.setItem("faculty_name", faculty[email].name);
+            localStorage.setItem("user", JSON.stringify({ role: "faculty", email: email }));
+            // Redirect to faculty dashboard
+            window.location.href = "faculty.html";
+          } else {
+            alert("Incorrect password! Please try again.");
+          }
+        }
+        // Check if the user is an admin
+        else if (admins[email]) {
+          if (admins[email].password === password) {
+            console.log("Admin login successful");
+            // Store the admin's name in localStorage
+            localStorage.setItem("admin_name", admins[email].name);
+            localStorage.setItem("user", JSON.stringify({ role: "admin", email: email }));
+            // Redirect to admin dashboard
+            window.location.href = "main.html";
+          } else {
+            alert("Incorrect password! Please try again.");
+          }
+        }
+        // Check if the user is a Vice Chancellor
+        else if (viceChancellors[email]) {
+          if (viceChancellors[email].password === password) {
+            console.log("Vice Chancellor login successful");
+            // Store the vice chancellor's name in localStorage
+            localStorage.setItem("vc_name", viceChancellors[email].name);
+            localStorage.setItem("user", JSON.stringify({ role: "vice_chancellor", email: email }));
+            // Redirect to Vice Chancellor dashboard
+            window.location.href = "dean.html";
+          } else {
+            alert("Incorrect password! Please try again.");
+          }
+        }
+        // Check if the user is a Dean
+        else if (deans[email]) {
+          if (deans[email].password === password) {
+            console.log("Dean login successful");
+            // Store the dean's name in localStorage
+            localStorage.setItem("dean_name", deans[email].name);
+            localStorage.setItem("user", JSON.stringify({ role: "dean", email: email }));
+            // Redirect to Dean dashboard
+            window.location.href = "dean.html";
+          } else {
+            alert("Incorrect password! Please try again.");
+          }
+        }
+        // Check if the user is a Technician
+        else if (technicians[email]) {
+          if (technicians[email].password === password) {
+            console.log("Technician login successful");
+            // Store the technician's name in localStorage
+            localStorage.setItem("technician_name", technicians[email].name);
+            localStorage.setItem("user", JSON.stringify({ role: "technician", email: email }));
+            // Redirect to Technician dashboard
+          } else {
+            alert("Incorrect password! Please try again.");
+          }
+        }
+        // Check if the user is a Librarian
+        else if (librarians[email]) {
+          if (librarians[email].password === password) {
+            console.log("Librarian login successful");
+            // Store the librarian's name in localStorage
+            localStorage.setItem("librarian_name", librarians[email].name);
+            localStorage.setItem("user", JSON.stringify({ role: "librarian", email: email }));
+            // Redirect to Librarian dashboard
+          } else {
+            alert("Incorrect password! Please try again.");
+          }
+        }
+        // If the email is not found in any group
+        else {
+          console.log("Email not found in any group");
+          alert("Invalid email! Please try again.");
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="login-card">
+        <img src="adypu.png" alt="College Logo" class="logo" />
+        <h1>Welcome Back!</h1>
+        <p>Please sign in to continue.</p>
+        <form id="loginForm" onsubmit="login(event)">
+          <label>Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+          />
+          <label>Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+            required
+          />
+          <button type="submit">Login</button>
+        </form>
+        <p class="forgot-password"><a href="#">Forgot your password?</a></p>
+      </div>
+    </div>
+  </body>
+</html>

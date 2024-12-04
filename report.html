@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ADYPU Notify Report</title>
+    <link rel="stylesheet" href="report.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">ADYPU Notify</a>
+            <ul class="nav-list">
+                <li class="nav-item"><a href="index.html">Home</a></li>
+                <li class="nav-item">
+                    <a href="index.html" onclick="logout()">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Content Section -->
+    <div class="container">
+        <h1>Notifications Report</h1>
+        <button id="downloadBtn" onclick="downloadReport()">
+            Download Report
+        </button>
+    </div>
+
+    <script>
+        function downloadReport() {
+            // Generate random notification data
+            const departments = ["CS", "IT", "ME", "CE", "EE"];
+            const notifications = [];
+            const titles = ["Exam Schedule", "Class Cancelled", "Project Submission", "Guest Lecture", "Workshop Update"];
+
+            for (let i = 0; i < 10; i++) {
+                const randomTitle = titles[Math.floor(Math.random() * titles.length)];
+                const randomMessage = "This is a message for " + randomTitle;
+                const randomDepartment = departments[Math.floor(Math.random() * departments.length)];
+                const randomCc = "cc@example.com";
+                const randomBcc = "bcc@example.com";
+                const randomDate = new Date(2024, Math.floor(Math.random() * 2) + 10, Math.floor(Math.random() * 31) + 1);
+                const formattedDate = randomDate.toISOString().split('T')[0];
+                const formattedTime = randomDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+
+                notifications.push({
+                    title: randomTitle,
+                    message: randomMessage,
+                    department: randomDepartment,
+                    cc: randomCc,
+                    bcc: randomBcc,
+                    date: formattedDate,
+                    time: formattedTime
+                });
+            }
+
+            // Create a worksheet and a workbook
+            const ws = XLSX.utils.json_to_sheet(notifications);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Notifications");
+
+            // Generate Excel file and trigger download
+            XLSX.writeFile(wb, "Notifications_Report.xlsx");
+        }
+
+        function logout() {
+            localStorage.removeItem("user");
+            window.location.href = "login.html";
+        }
+    </script>
+</body>
+</html>

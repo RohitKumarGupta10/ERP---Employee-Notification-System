@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dean Dashboard - ADYPU Notify</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    
+    <!-- Main Content Area -->
+    <div class="main-content">
+      <header>
+        <h1>Dean Dashboard</h1>
+        <p>
+          Welcome, Dean! Oversee all notifications and department activities.
+        </p>
+      </header>
+
+      <!-- Dashboard Cards -->
+      <section class="cards">
+        <div class="card">
+          <i class="fa fa-bell"></i>
+          <h3>Manage Notifications</h3>
+          <p>Send and oversee notifications to all departments.</p>
+          <a href="notification.html">Manage Notifications</a>
+        </div>
+        <div class="card">
+          <i class="fa fa-file-text"></i>
+          <h3>Generate Reports</h3>
+          <p>Generate reports for notification metrics.</p>
+          <a href="report.html">View Reports</a>
+        </div>
+        <div class="card">
+          <i class="fa fa-history"></i>
+          <h3>View Notification History</h3>
+          <p>Review all notifications sent across departments.</p>
+          <a href="history.html">View History</a>
+        </div>
+        <div class="card">
+          <i class="fa fa-area-chart"></i>
+          <h3>Analytics</h3>
+          <p>Analyze department engagement metrics.</p>
+          <a href="analytics.html"
+            >Go to Analytics</a
+          >
+        </div>
+      </section>
+    </div>
+
+    <script>
+      function logout() {
+        localStorage.removeItem("user");
+        window.location.href = "login.html";
+      }
+    </script>
+  </body>
+</html>

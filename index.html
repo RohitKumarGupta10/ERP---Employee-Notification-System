@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notification Portal</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="#home" class="logo">ADYPU Notify</a>
+        <div class="hamburger" id="hamburger-menu">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+        <ul class="nav-list" id="nav-list">
+          <li class="nav-item">
+            <a href="#home"><i class="fa fa-fw fa-home"></i>Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="#about"><i class="fa fa-fw fa-info-circle"></i>About</a>
+          </li>
+          <li class="nav-item">
+            <a href="#contact"><i class="fa fa-fw fa-envelope"></i>Contact</a>
+          </li>
+          <li class="nav-item">
+            <a href="login.html" target="_blank"><i class="fa fa-fw fa-user"></i>Login</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section class="home" id="home">
+      <div class="home-content">
+        <h1>
+          Welcome to <br />
+          ADYPU Notification Portal
+        </h1>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+      <div class="about-content">
+        <h2>About Us</h2>
+        <p>
+          ADYPU Notify helps students, faculty, and staff stay updated with
+          university notifications. Our goal is to streamline communication by
+          offering a centralized platform for announcements and important
+          updates.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+      <div class="contact-content">
+        <h2>Contact Us</h2>
+        <p>
+          For any inquiries or support, reach out to us:<br />
+          Email: support@adypu.edu.in<br />
+          Phone: +91-909090900<br />
+          Address: ADYPU, Lohegaon, Pune, Maharashtra 411047
+        </p>
+      </div>
+    </section>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const hamburger = document.getElementById("hamburger-menu");
+        const navList = document.getElementById("nav-list");
+
+        hamburger.addEventListener("click", () => {
+          navList.classList.toggle("active");
+        });
+      });
+    </script>
+  </body>
+</html>

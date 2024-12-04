@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notification History - ADYPU Notify</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">ADYPU Notify</a>
+            <ul class="nav-list">
+                <li class="nav-item"><a href="index.html"><i class="fa fa-fw fa-home"></i>Home</a></li>
+                <li class="nav-item"><a href="login.html" onclick="logout()"><i class="fa fa-sign-out"></i>Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Notification History</h1>
+        <table id="notificationHistory">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Message</th>
+                    <th>Department</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Notification rows will be dynamically added here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function logout() {
+            localStorage.removeItem("user");
+            window.location.href = "login.html";
+        }
+
+        // Retrieve notification history from localStorage
+        const notificationHistory = JSON.parse(localStorage.getItem('notificationHistory')) || [];
+
+        // Function to display notification history
+        function displayHistory() {
+            const tableBody = document.querySelector('#notificationHistory tbody');
+            tableBody.innerHTML = ''; // Clear existing rows
+
+            notificationHistory.forEach(notification => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${notification.title}</td>
+                    <td>${notification.message}</td>
+                    <td>${notification.department}</td>
+                    <td>${notification.date}</td>
+                    <td>${notification.time}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Display history when page loads
+        window.onload = displayHistory;
+    </script>
+
+<style>
+    /* General Styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+    }
+
+    body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container {
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        max-width: 800px;
+        width: 100%;
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    h1 {
+        font-size: 2rem;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #6a11cb;
+        color: white;
+        font-weight: bold;
+    }
+
+    td {
+        background-color: #f9f9f9;
+    }
+
+    tr:hover {
+        background-color: #e9e9e9;
+    }
+
+    /* Navbar Styling */
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(135deg, #6a11cb, #2575fc);
+        padding: 10px 20px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+    }
+
+    .nav-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .logo {
+        color: white;
+        font-size: 1.8rem;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .nav-list {
+        display: flex;
+        list-style: none;
+    }
+
+    .nav-item {
+        margin: 0 15px;
+    }
+
+    .nav-item a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 10px 20px;
+        border-radius: 30px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .nav-item a:hover {
+        background-color: white;
+        color: #000;
+        transform: scale(1.1);
+    }
+
+    @media (max-width: 768px) {
+        table {
+            font-size: 0.9rem;
+        }
+        .container {
+            margin-top: 60px;
+        }
+    }
+</style>
+</body>
+</html>

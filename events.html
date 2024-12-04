@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Placement Drive Companies & College Events</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background: #f4f4f9;
+  color: #333;
+  overflow-x: hidden;
+}
+
+h1 {
+  text-align: center;
+  padding: 20px;
+  color: #333;
+}
+
+/* Placement Drive Section */
+.scrolling-images {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.scrolling-images img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+  border: 2px solid #ddd;
+}
+
+.scrolling-images img:hover {
+  transform: scale(1.1);
+  border-color: #0073e6;
+}
+
+/* Events Section */
+.events-container {
+  display: flex;
+  flex-wrap: wrap; /* Ensures content wraps */
+  justify-content: space-between; /* Adds spacing between items */
+  gap: 20px; /* Adds consistent gap between cards */
+  padding: 20px;
+}
+
+.event {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  width: 300px; /* Consistent width */
+  max-width: 100%;
+}
+
+.event img {
+  width: 100%; /* Full width of the card */
+  height: 200px; /* Consistent height for all images */
+  object-fit: cover; /* Ensures proper aspect ratio */
+  border-bottom: 2px solid #0073e6;
+}
+
+.event-content {
+  padding: 15px;
+  text-align: center;
+}
+
+.register-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background: #0073e6;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.register-button:hover {
+  background: #005bb5;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .events-container {
+    justify-content: center; /* Center align items on smaller screens */
+    gap: 15px;
+  }
+
+  .event {
+    width: 250px; /* Adjust card width */
+  }
+
+  .event img {
+    height: 150px; /* Adjust image height */
+  }
+}
+
+@media (max-width: 480px) {
+  .events-container {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    align-items: center;
+    gap: 15px;
+  }
+
+  .event {
+    width: 100%; /* Full width */
+  }
+
+  .event img {
+    height: 150px;
+  }
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="main-content">
+      <header>
+        <h1>Placement Drive Companies List - December 2024</h1>
+      </header>
+      <div class="scrolling-images">
+        <img src="accenture.com.png" alt="Accenture" />
+        <img src="tcs.com.png" alt="TCS" />
+        <img src="techmahindra.com.png" alt="Tech Mahindra" />
+        <img src="wipro.com.png" alt="Wipro" />
+        <img src="infosys.com.png" alt="Infosys" />
+        <img src="hcl.com.png" alt="HCL" />
+      </div>
+      <h1>Upcoming College Events</h1>
+      <div class="events-container">
+        <div class="event">
+          <img src="event1.jpg" alt="Event 1" />
+          <div class="event-content">
+            <p>Dive into the Future of AI - Free Session</p>
+            <a href="#" class="register-button">Register Now</a>
+          </div>
+        </div>
+        <div class="event">
+          <img src="event2.jpg" alt="Event 2" />
+          <div class="event-content">
+            <p>Engineer's दिवस - Exciting Activities</p>
+            <a href="#" class="register-button">Register Now</a>
+          </div>
+        </div>
+        <div class="event">
+          <img src="event3.jpg" alt="Event 3" />
+          <div class="event-content">
+            <p>CAD Innova - Show Your Skills</p>
+            <a href="#" class="register-button">Register Now</a>
+          </div>
+        </div>
+        <div class="event">
+          <img src="event4.jpg" alt="Event 4" />
+          <div class="event-content">
+            <p>Tech Titans Trivia - Win Prizes</p>
+            <a href="#" class="register-button">Register Now</a>
+          </div>
+        </div>
+        <h1>Engineer's Day Events</h1>
+        <div class="events-container">
+          <div class="event">
+            <img src="event5.jpg" alt="Event 5" />
+            <div class="event-content">
+              <p>Extempore</p>
+              <a href="#" class="register-button">Register Now</a>
+            </div>
+          </div>
+          <div class="events-container">
+            <div class="event">
+              <img src="event6.jpg" alt="Event 6" />
+              <div class="event-content">
+                <p>Quest Tank</p>
+                <a href="#" class="register-button">Register Now</a>
+              </div>
+            </div>
+            <div class="events-container">
+              <div class="event">
+                <img src="event7.jpg" alt="Event 7" />
+                <div class="event-content">
+                  <p>ABLAZE 2024</p>
+                  <a href="#" class="register-button">Register Now</a>
+                </div>
+              </div>
+              <div class="events-container">
+                <div class="event">
+                  <img src="event8.jpg" alt="Event 8" />
+                  <div class="event-content">
+                    <p>Smart India Hackathon 2024</p>
+                    <a href="#" class="register-button">Register Now</a>
+                  </div>
+                </div>
+              
+      </div>
+    </div>
+  </body>
+</html>

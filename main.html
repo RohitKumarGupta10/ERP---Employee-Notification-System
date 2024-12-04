@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard - ADYPU Notify</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+      <h2>ADYPU Notify</h2>
+      <ul>
+        <li>
+          <a href="#"><i class="fa fa-user-circle"></i> Profile</a>
+        </li>
+        <li>
+          <a href="users.html"><i class="fa fa-users"></i> User Management</a>
+        </li>
+        <li>
+          <a href="#"><i class="fa fa-cog"></i> Settings</a>
+        </li>
+        <li>
+          <a href="feedback.html" target="_blank"
+            ><i class="fa fa-comment"></i> Feedback</a
+          >
+        </li>
+        <li>
+          <a href="login.html" onclick="logout()"
+            ><i class="fa fa-sign-out"></i> Logout</a
+          >
+        </li>
+      </ul>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+      <header>
+        <h1>Admin Dashboard</h1>
+        <p>
+          Welcome, Admin! Manage your notifications and track system activity.
+        </p>
+      </header>
+
+      <!-- Dashboard Cards -->
+      <section class="cards">
+        <div class="card">
+          <i class="fa fa-bell"></i>
+          <h3>Send Notification</h3>
+          <p>Compose and send notifications to various departments.</p>
+          <a href="#notificationForm">Send Now</a>
+        </div>
+        <div class="card">
+          <i class="fa fa-file-text"></i>
+          <h3>Generate Report</h3>
+          <p>Generate detailed reports of sent notifications.</p>
+          <a href="report.html">View Reports</a>
+        </div>
+        <div class="card">
+          <i class="fa fa-history"></i>
+          <h3>Notification History</h3>
+          <p>Review the history of all sent notifications.</p>
+          <a href="history.html">View History</a>
+        </div>
+        <div class="card">
+          <i class="fa fa-area-chart"></i>
+          <h3>Analytics</h3>
+          <p>View and analyze notification metrics and trends.</p>
+          <a href="analytics.html"> Go to Analytics </a>
+        </div>
+      </section>
+
+      <!-- Notification Form -->
+      <section class="form-section">
+        <form id="notificationForm" onsubmit="sendNotification(event)">
+          <input
+            type="hidden"
+            id="accessKey"
+            value="3ad4a3ab-a74e-4d12-add6-6e159bb15ae1"
+          />
+          <h2>Send Notification</h2>
+          <label for="title">Notification Title</label>
+          <input type="text" id="title" name="title" required />
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="4" required></textarea>
+
+          <label for="department">Recipient Department</label>
+          <select id="department" name="department" required>
+            <option value="">Select a Department</option>
+            <option value="Vice Chancellor">Vice Chancellor</option>
+            <option value="Dean">Dean</option>
+            <option value="Faculty Members">Faculty</option>
+            <option value="Administrative Staff">Administrative Staff</option>
+            <option value="Technicians">Technicians</option>
+            <option value="Placement Department">Placement Department</option>
+            <option value="Research and Development Department">
+              Research and Development
+            </option>
+            <option value="Library Staff">Library Staff</option>
+            <option value="Student Representatives">
+              Student Representatives
+            </option>
+          </select>
+
+          <label for="recipientCc">CC</label>
+          <input type="email" id="recipientCc" name="recipientCc" />
+
+          <label for="recipientBcc">BCC</label>
+          <input type="email" id="recipientBcc" name="recipientBcc" />
+
+          <label for="attachment">Upload Attachment</label>
+          <input type="file" id="attachment" name="attachment" />
+
+          <button type="submit">Send Notification</button>
+        </form>
+      </section>
+    </div>
+
+    <script>
+      async function sendNotification(event) {
+        event.preventDefault();
+
+        const accessKey = "3ad4a3ab-a74e-4d12-add6-6e159bb15ae1"; // Replace with your Web3Forms access key
+        const title = document.getElementById("title").value;
+        const message = document.getElementById("message").value;
+        const department = document.getElementById("department").value;
+        const recipientCc = document.getElementById("recipientCc").value;
+        const recipientBcc = document.getElementById("recipientBcc").value;
+
+        const departmentEmails = {
+          "Vice Chancellor": "rohitkumargupta1007@gmail.com",
+          Dean: "pratik.chaudhary@adypu.edu.in",
+          "Faculty Members": "rohit.gupta@adypu.edu.in",
+          "Administrative Staff": "misproject08@gmail.com",
+          Technicians: "giriraj.vyas@adypu.edu.in",
+          "Placement Department": "lokesh.lohani@adypu.edu.in",
+          "Research and Development Department": "om.kadam@adypu.edu.in",
+          "Library Staff": "library@adypu.edu.in",
+          "Student Representatives": "students@adypu.edu.in",
+        };
+
+        if (!departmentEmails[department]) {
+          alert("Please select a valid department.");
+          return;
+        }
+
+        const emailTo = departmentEmails[department];
+
+        const payload = {
+          access_key: accessKey,
+          subject: title,
+          to: emailTo,
+          from_name: "ADYPU Notify",
+          message: message,
+          cc: recipientCc,
+          bcc: recipientBcc,
+        };
+
+        try {
+          const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          });
+
+          const data = await response.json();
+
+          if (data.success) {
+            alert("Notification sent successfully!");
+            document.getElementById("notificationForm").reset();
+          } else {
+            alert("Failed to send notification. Please check your API key.");
+          }
+        } catch (error) {
+          console.error("Error:", error);
+          alert("An error occurred. Please try again later.");
+        }
+      }
+
+      function logout() {
+        localStorage.removeItem("user");
+        window.location.href = "login.html";
+      }
+    </script>
+  </body>
+</html>

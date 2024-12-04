@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins",sans-serif;
+  
+}
+
+body {
+  display: flex;
+  background: #f4f4f9;
+  color: #333;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  width: 250px;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  height: 100vh;
+  padding: 20px;
+  position: fixed;
+}
+
+.sidebar h2 {
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin-bottom: 15px;
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+/* Main Content */
+.main-content {
+  margin-left: 250px;
+  padding: 20px;
+  width: 100%;
+}
+
+header {
+  margin-bottom: 30px;
+}
+
+header h1 {
+  font-size: 2rem;
+  color: #333;
+}
+
+header p {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Cards */
+.cards {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  transition: transform 0.3s ease;
+}
+
+.card i {
+  font-size: 2rem;
+  color: #2575fc;
+  margin-bottom: 15px;
+}
+
+.card h3 {
+  font-size: 1.4rem;
+  color: #333;
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.card a {
+  color: #2575fc;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+
+
+/* Notification Form */
+.form-section {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.form-section h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 10px;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 5px;
+  background: #f0f0f0;
+  color: #333;
+  outline: none;
+  margin-bottom: 15px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+button {
+  background: linear-gradient(135deg, #ff5722, #ff9800);
+  color: white;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #ff784e, #ffb73d);
+}
+
+/* Media Queries for Responsive Design */
+
+/* For devices with a maximum width of 768px (tablets and small screens) */
+@media (max-width: 768px) {
+  .sidebar {
+      width: 100%;
+      position: relative; /* Change fixed to relative */
+      height: auto; /* Allow height to adjust */
+  }
+
+  .main-content {
+      margin-left: 0; /* Remove left margin */
+      padding: 10px; /* Adjust padding */
+  }
+
+  .cards {
+      flex-direction: column; /* Stack cards vertically */
+  }
+
+  .card {
+      width: 100%; /* Ensure cards take full width */
+      margin-bottom: 20px; /* Add spacing between cards */
+  }
+
+  header h1 {
+      font-size: 1.8rem; /* Smaller header font */
+  }
+
+  header p {
+      font-size: 0.9rem; /* Smaller paragraph font */
+  }
+
+  button {
+      padding: 10px; /* Adjust button padding */
+      font-size: 0.9rem; /* Smaller button font */
+  }
+}
+
+/* For devices with a maximum width of 480px (mobile devices) */
+@media (max-width: 480px) {
+  .sidebar h2 {
+      font-size: 1.5rem; /* Smaller title font */
+  }
+
+  .sidebar a {
+      font-size: 1rem; /* Smaller link font */
+      padding: 10px; /* Adjust padding */
+  }
+
+  .card h3 {
+      font-size: 1.2rem; /* Smaller card title font */
+  }
+
+  .card p {
+      font-size: 0.8rem; /* Smaller card paragraph font */
+  }
+
+  input, textarea, select {
+      padding: 8px; /* Adjust input padding */
+  }
+
+  button {
+      font-size: 0.8rem; /* Smaller button font */
+  }
+
+  .form-section h2 {
+      font-size: 1.5rem; /* Smaller form title font */
+  }
+}
+
+/* For larger screens (optional) */
+@media (min-width: 769px) {
+  .sidebar {
+      width: 250px; /* Ensure sidebar remains at its intended width */
+  }
+
+  .main-content {
+      margin-left: 250px; /* Maintain left margin */
+  }
+}

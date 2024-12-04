@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Notification System</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="#" class="logo">ADYPU Notify</a>
+        <div class="hamburger" onclick="toggleMenu()">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="index.html"><i class="fa fa-fw fa-home"></i>Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="history.html"><i class="fa fa-fw fa-history"></i>Notification History</a>
+          </li>
+          <li class="nav-item">
+            <a href="login.html" onclick="logout()"><i class="fa fa-fw fa-sign-out"></i>Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Content Section -->
+    <div class="container">
+      <h1>Welcome!</h1>
+
+      <!-- Notification Form -->
+      <form id="notificationForm">
+        <input type="hidden" id="accessKey" value="3ad4a3ab-a74e-4d12-add6-6e159bb15ae1" />
+        <label>
+          Notification Title
+          <input type="text" id="title" name="title" required />
+        </label>
+
+        <label>
+          Message
+          <textarea id="message" name="message" rows="4" required></textarea>
+        </label>
+
+        <label>
+          Recipient Department
+          <select id="department" name="department" required>
+            <option value="">Select a Department</option>
+            <option value="Vice Chancellor">Vice Chancellor</option>
+            <option value="Dean">Dean</option>
+            <option value="Faculty Members">Faculty</option>
+            <option value="Administrative Staff">Administrative Staff</option>
+            <option value="Technicians">Technicians</option>
+            <option value="Placement Department">Placement Department</option>
+            <option value="Research and Development Department">Research and Development</option>
+            <option value="Library Staff">Library Staff</option>
+            <option value="Student Representatives">Student Representatives</option>
+          </select>
+        </label>
+
+        <label>
+          CC
+          <input type="email" id="recipientCc" name="recipientCc" />
+        </label>
+
+        <label>
+          BCC
+          <input type="email" id="recipientBcc" name="recipientBcc" />
+        </label>
+
+        <label>
+          Upload Attachment
+          <input type="file" id="attachment" name="attachment" />
+        </label>
+
+        <button type="submit">Send Notification</button>
+      </form>
+    </div>
+
+    <script>
+      // Department-to-email mapping
+      const departmentEmails = {
+        "Vice Chancellor": "rohit.gupta@adypu.edu.in",
+        "Dean": "pratik.chaudhary@adypu.edu.in",
+        "Faculty Members": "giriraj.vyas@adypu.edu.in",
+        "Administrative Staff": "misproject08@gmail.com",
+        "Technicians": "technicians@adypu.edu.in",
+        "Placement Department": "rohitkumargupta1007@gmail.com",
+        "Research and Development Department": "rnd@adypu.edu.in",
+        "Library Staff": "lokesh.lohani@adypu.edu.in",
+        "Student Representatives": "students@adypu.edu.in",
+      };
+
+      // Send notification function
+      function sendNotification(event) {
+        event.preventDefault();
+
+        const form = document.getElementById("notificationForm");
+        const title = document.getElementById("title").value;
+        const message = document.getElementById("message").value;
+        const department = document.getElementById("department").value;
+        const recipientCc = document.getElementById("recipientCc").value;
+        const recipientBcc = document.getElementById("recipientBcc").value;
+
+        // Validate department selection
+        if (!departmentEmails[department]) {
+          alert("Please select a valid department.");
+          return;
+        }
+
+        const emailTo = departmentEmails[department];
+        const accessKey = document.getElementById("accessKey").value;
+
+        // Prepare data for API
+        const formData = new FormData();
+        formData.append("access_key", accessKey);
+        formData.append("title", title);
+        formData.append("message", message);
+        formData.append("recipient", emailTo);
+        if (recipientCc) formData.append("cc", recipientCc);
+        if (recipientBcc) formData.append("bcc", recipientBcc);
+
+        fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          body: formData,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              alert("Notification sent successfully!");
+              form.reset();
+            } else {
+              alert("Failed to send notification. Please try again.");
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert("An error occurred. Please try again later.");
+          });
+      }
+
+      // Attach event listener
+      document
+        .getElementById("notificationForm")
+        .addEventListener("submit", sendNotification);
+
+      // Toggle menu for mobile view
+      function toggleMenu() {
+        const navList = document.querySelector(".nav-list");
+        navList.classList.toggle("active");
+      }
+    </script>
+  </body>
+  <style>
+    /* General Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      height: 111vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Container Styling */
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      margin-top: 50px; /* Adjust for fixed navbar */
+    }
+
+    /* Header Styling */
+    h1 {
+      font-size: 2rem;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    /* Form Styling */
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    label {
+      display: block;
+      width: 100%;
+      margin-bottom: 15px;
+      font-size: 0.9rem;
+      color: #555;
+      text-align: left;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 12px;
+      font-size: 0.95rem;
+      border: none;
+      border-radius: 10px;
+      background: #f0f0f0;
+      color: #333;
+      outline: none;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      background: #e9e9e9;
+      box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    textarea {
+      resize: vertical;
+      height: 80px;
+    }
+
+    /* Button Styling */
+    button {
+      background: linear-gradient(135deg, #ff5722, #ff9800);
+      color: white;
+      padding: 12px;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    /* Navbar Styling */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      padding: 10px 20px;
+      border-radius: 0 0 10px 10px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      color: white;
+      font-size: 1.8rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .nav-list {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-item {
+      margin: 0 15px;
+    }
+
+    .nav-item a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 30px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .nav-item a:hover {
+      background-color: white;
+      color: #000000;
+      transform: scale(1.1);
+    }
+
+    .nav-item a:active {
+      background-color: lightgray;
+      transform: scale(1);
+    }
+
+    /* Hamburger Menu Styling */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .bar {
+      width: 30px;
+      height: 4px;
+      background-color: white;
+      margin: 5px 0;
+      transition: 0.3s;
+    }
+
+    /* Responsive Design for Mobile */
+    @media (max-width: 768px) {
+      .nav-list {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(135deg, #6a11cb, #2575fc);
+        border-radius: 0 0 10px 10px;
+        padding: 10px 0;
+        z-index: 1000;
+      }
+
+      .nav-list.active {
+        display: flex;
+      }
+
+      .nav-item {
+        margin: 10px 0;
+        text-align: center;
+      }
+
+      .nav-item a {
+        font-size: 18px;
+        padding: 10px 15px;
+        background: linear-gradient(135deg, #6a11cb, #2575fc);
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .bar {
+        background-color: white;
+      }
+
+      .container {
+        margin-top: 60px; /* Adjust margin-top for fixed navbar */
+      }
+    }
+  </style>
+</html>

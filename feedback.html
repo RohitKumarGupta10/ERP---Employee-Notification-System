@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feedback Form</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+      /* Base styles for the body and global elements */
+      body {
+        display: flex;
+        background: #f4f4f9; /* Light background for the body */
+        color: #333; /* Dark text color */
+        font-family: "Poppins";
+      }
+
+      /* Sidebar Styling */
+      .sidebar {
+        width: 250px; /* Fixed width for sidebar */
+        background: linear-gradient(
+          135deg,
+          #6a11cb,
+          #2575fc
+        ); /* Gradient background */
+        color: white; /* White text color */
+        height: 100vh; /* Full height of the viewport */
+        padding: 20px; /* Inner padding */
+        position: fixed; /* Fixed position */
+      }
+
+      .sidebar h2 {
+        font-size: 1.8rem; /* Title font size */
+        margin-bottom: 30px; /* Space below the title */
+      }
+
+      .sidebar ul {
+        list-style: none; /* No list bullets */
+        padding: 0; /* No padding */
+      }
+
+      .sidebar li {
+        margin-bottom: 15px; /* Space between list items */
+      }
+
+      .sidebar a {
+        color: white; /* Link color */
+        text-decoration: none; /* No underline */
+        font-size: 1.1rem; /* Font size for links */
+        display: flex; /* Flexbox for alignment */
+        align-items: center; /* Center items vertically */
+        gap: 10px; /* Space between icon and text */
+      }
+
+      .sidebar a:hover {
+        background: #fff; /* Background color on hover */
+        color: #2575fc; /* Change text color on hover */
+        border-radius: 10px; /* Rounded corners */
+        padding: 8px; /* Inner padding */
+      }
+
+      /* Main Content */
+      .main-content {
+        margin-left: 250px; /* Leave space for the sidebar */
+        padding: 20px; /* Inner padding */
+        width: 100%; /* Full width */
+      }
+
+      header {
+        margin-bottom: 30px; /* Space below header */
+      }
+
+      header h1 {
+        font-size: 2rem; /* Header font size */
+        color: #333; /* Dark text color */
+      }
+
+      header p {
+        font-size: 1rem; /* Smaller paragraph font size */
+        color: #666; /* Gray text color */
+      }
+
+      /* Form Section */
+      .form-section {
+        background: white; /* White background for the form */
+        padding: 30px; /* Inner padding */
+        border-radius: 15px; /* Rounded corners */
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        margin-bottom: 30px; /* Space below the form section */
+      }
+
+      .form-section h2 {
+        color: #333; /* Dark text color for the heading */
+        margin-bottom: 20px; /* Space below the heading */
+      }
+
+      /* Label Styles */
+      label {
+        display: block; /* Block display for labels */
+        font-size: 0.9rem; /* Font size for labels */
+        color: #555; /* Color for label text */
+        margin-bottom: 5px; /* Space below labels */
+      }
+
+      /* Input and Textarea Styles */
+      input,
+      textarea {
+        width: 100%; /* Full width inputs */
+        padding: 10px; /* Inner padding */
+        font-size: 0.95rem; /* Font size for input text */
+        border: none; /* No border */
+        border-radius: 5px; /* Rounded corners */
+        background: #f0f0f0; /* Light gray background */
+        color: #333; /* Text color */
+        outline: none; /* No outline */
+        margin-bottom: 15px; /* Space below inputs */
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+      }
+
+      /* Button Styles */
+      button {
+        background: linear-gradient(
+          135deg,
+          #ff5722,
+          #ff9800
+        ); /* Gradient background */
+        color: white; /* White text color */
+        padding: 12px; /* Inner padding */
+        font-size: 1rem; /* Font size */
+        font-weight: bold; /* Bold font */
+        border: none; /* No border */
+        border-radius: 25px; /* Rounded corners */
+        cursor: pointer; /* Pointer cursor */
+        transition: all 0.3s ease; /* Smooth transition for hover */
+        width: 100%; /* Full width button */
+      }
+
+      button:hover {
+        background: linear-gradient(
+          135deg,
+          #ff784e,
+          #ffb73d
+        ); /* Lighter gradient on hover */
+      }
+
+      /* Media Queries for Responsive Design */
+      @media (max-width: 768px) {
+        .sidebar {
+          width: 100%; /* Full width sidebar */
+          position: relative; /* Change fixed to relative */
+          height: auto; /* Allow height to adjust */
+        }
+
+        .main-content {
+          margin-left: 0; /* Remove left margin */
+          padding: 10px; /* Adjust padding */
+        }
+
+        .form-section {
+          padding: 20px; /* Adjust padding for smaller screens */
+        }
+
+        input,
+        textarea {
+          padding: 8px; /* Adjust input padding for smaller screens */
+        }
+
+        button {
+          padding: 10px; /* Adjust button padding for smaller screens */
+          font-size: 0.9rem; /* Smaller font size for button */
+        }
+      }
+
+      @media (max-width: 480px) {
+        .sidebar h2 {
+          font-size: 1.5rem; /* Smaller title font */
+        }
+
+        .sidebar a {
+          font-size: 1rem; /* Smaller link font */
+          padding: 10px; /* Adjust padding */
+        }
+
+        .form-section h2 {
+          font-size: 1.5rem; /* Smaller form heading font size */
+        }
+
+        input,
+        textarea {
+          padding: 6px; /* Adjust padding for smaller screens */
+        }
+
+        button {
+          font-size: 0.8rem; /* Smaller button font size */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-content">
+      <header>
+        <h1>Feedback Form</h1>
+        <p>Your feedback is important to us!</p>
+      </header>
+      <div class="form-section">
+        <h2>We value your feedback</h2>
+        <form id="feedbackForm">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Enter your name"
+            required
+          />
+
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+          />
+
+          <label for="feedback">Feedback</label>
+          <textarea
+            id="feedback"
+            name="feedback"
+            placeholder="Enter your feedback"
+            rows="5"
+            required
+          ></textarea>
+
+          <button type="submit">Submit Feedback</button>
+        </form>
+      </div>
+    </div>
+    <script>
+      document
+        .getElementById("feedbackForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          alert("Thank you for your feedback!");
+          // Here you can add code to send the feedback to your server or handle it accordingly
+          this.reset(); // Reset the form after submission
+        });
+    </script>
+  </body>
+</html>
