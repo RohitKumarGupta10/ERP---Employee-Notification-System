@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Dashboard - ADYPU Notify</title>
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .main-content {
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 28px;
+            color: #0073e6;
+        }
+        #student-name {
+            font-size: 16px;
+            color: #555;
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+        .card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+        .card i {
+            font-size: 40px;
+            color: #0073e6;
+            margin-bottom: 15px;
+        }
+        .card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .card p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .card a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #0073e6;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        @media (max-width: 768px) {
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 480px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <header>
+            <h1>Student Dashboard</h1>
+            <p id="student-name">Welcome, Student!</p>
+        </header>
+        <section class="cards">
+            <div class="card">
+                <i class="fa fa-bell"></i>
+                <h3>View Notifications</h3>
+                <p>Check your latest notifications from various departments.</p>
+                <a href="history.html">View Notifications</a>
+            </div>
+            <div class="card">
+                <i class="fa fa-file-text"></i>
+                <h3>Feedback</h3>
+                <p>Submit your feedback regarding the notifications.</p>
+                <a href="feedback.html">Give Feedback</a>
+            </div>
+            <div class="card">
+                <i class="fa fa-calendar"></i>
+                <h3>Upcoming Events</h3>
+                <p>Stay updated with important events and deadlines.</p>
+                <a href="events.html">View Events</a>
+            </div>
+
+            <!-- Second Row -->
+            <div class="card">
+                <i class="fa fa-area-chart"></i>
+                <h3>Analytics</h3>
+                <p>View your performance and engagement metrics.</p>
+                <a href="studentanalytics.html">Go to Analytics</a>
+            </div>
+
+            <div class="card">
+                <i class="fa fa-id-card"></i>
+                <h3>Download ID Card</h3>
+                <p>Download your official university ID card in PDF format.</p>
+                <a id="id-card-link" href="https://drive.google.com/file/d/1UXQJLFxCiLipR7UYQNJs0Up_WkiSZ4kE/view?usp=drive_link">Download Now</a>
+            </div>
+            <div class="card">
+                <i class="fa fa-file"></i>
+                <h3>View Transcript</h3>
+                <p>Access and download your academic transcript securely.</p>
+                <a id="transcript-link" href="https://drive.google.com/file/d/1dhZyHBWM1YLsdWXhL00AChlgkmSs8R-i/view?usp=drive_link">View Transcript</a>
+            </div>
+        </section>
+    </div>
+
+    <script>
+ 
+        // Retrieve student information from localStorage
+        const studentName = localStorage.getItem("student_name");
+        const studentEmail = localStorage.getItem("student_email");
+
+        if (studentName) {
+            document.getElementById("student-name").textContent = `Welcome, ${studentName}!`;
+        }
+        function logout() {
+            localStorage.removeItem("user");
+            localStorage.removeItem("student_name");
+            localStorage.removeItem("student_email");
+            window.location.href = "login.html";
+        }
+    </script>
+</body>
+</html>
