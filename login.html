@@ -20,16 +20,7 @@
           "lokesh@gmail.com": { name: "Lokesh", password: "1234" },
           "giriraj@gmail.com": { name: "Giriraj", password: "1234" },
           "habibur@gmail.com": { name: "Habibur", password: "1234" },
-          "harsh@gmail.com": { name: "Harsh", password: "1234" },
-          "aditya@gmail.com": { name: "Aditya", password: "1234" },
-          "manoj@gmail.com": { name: "Manoj", password: "1234" },
-          "rahul@gmail.com": { name: "Rahul", password: "1234" },
-          "sagar@gmail.com": { name: "Sagar", password: "1234" },
-          "kiran@gmail.com": { name: "Kiran", password: "1234" },
-          "ankit@gmail.com": { name: "Ankit", password: "1234" },
-          "rajesh@gmail.com": { name: "Rajesh", password: "1234" },
-          "ankush@gmail.com": { name: "Ankush", password: "1234" },
-          "sumit@gmail.com": { name: "Sumit", password: "1234" },
+          "aditya@gmail.com": { name: "Harsh", password: "1234" },
         };
 
         // Array of faculty emails and their names, with a password of 1234
@@ -38,16 +29,9 @@
           "amol@gmail.com": { name: "Amol", password: "1234" },
           "vishal@gmail.com": { name: "Vishal", password: "1234" },
           "yogesh@gmail.com": { name: "Yogesh", password: "1234" },
-          "abhay@gmail.com": { name: "Abhay", password: "1234" },
-          "bharat@gmail.com": { name: "Bharat", password: "1234" },
+          "suresh@gmail.com": { name: "Abhay", password: "1234" },
+          "vikas@gmail.com": { name: "Bharat", password: "1234" },
           "pradeep@gmail.com": { name: "Pradeep", password: "1234" },
-          "ravi@gmail.com": { name: "Ravi", password: "1234" },
-          "nilesh@gmail.com": { name: "Nilesh", password: "1234" },
-          "shailesh@gmail.com": { name: "Shailesh", password: "1234" },
-          "vikas@gmail.com": { name: "Vikas", password: "1234" },
-          "atul@gmail.com": { name: "Atul", password: "1234" },
-          "suresh@gmail.com": { name: "Suresh", password: "1234" },
-          "kumar@gmail.com": { name: "Kumar", password: "1234" },
         };
 
         // Admins array (with a password of 1234)
@@ -88,17 +72,28 @@
 
         // Check if the user is a student
         if (students[email]) {
-          if (students[email].password === password) {
-            console.log("Student login successful");
-            // Store the student's name in localStorage
-            localStorage.setItem("student_name", students[email].name);
-            localStorage.setItem("user", JSON.stringify({ role: "student", email: email }));
-            // Redirect to student dashboard
-            window.location.href = "student.html";
-          } else {
-            alert("Incorrect password! Please try again.");
-          }
-        }
+  if (students[email].password === password) {
+    console.log("Student login successful");
+
+    // Special case for Giriraj
+    if (email === "giriraj@gmail.com") {
+      // Store the student's name in localStorage
+      localStorage.setItem("student_name", students[email].name);
+      localStorage.setItem("user", JSON.stringify({ role: "student", email: email }));
+      // Redirect to Giriraj's specific dashboard
+      window.location.href = "student2.html";
+    } else {
+      // Store the student's name in localStorage
+      localStorage.setItem("student_name", students[email].name);
+      localStorage.setItem("user", JSON.stringify({ role: "student", email: email }));
+      // Redirect to default student dashboard
+      window.location.href = "student.html";
+    }
+  } else {
+    alert("Incorrect password! Please try again.");
+  }
+}
+
         // Check if the user is a faculty member
         else if (faculty[email]) {
           if (faculty[email].password === password) {
